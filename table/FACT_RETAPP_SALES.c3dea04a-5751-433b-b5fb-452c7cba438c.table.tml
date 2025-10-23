@@ -1,0 +1,81 @@
+guid: c3dea04a-5751-433b-b5fb-452c7cba438c
+table:
+  name: FACT_RETAPP_SALES
+  db: RETAIL_APPAREL_TEST
+  schema: PUBLIC
+  db_table: FACT_RETAPP_SALES
+  connection:
+    name: Connection_git_version_control
+    fqn: 50ba03d0-7ebc-4b9d-9d3b-f77a1ba03098
+  columns:
+  - name: SALESID
+    db_column_name: SALESID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: PRODUCTID
+    db_column_name: PRODUCTID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: STOREID
+    db_column_name: STOREID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: QUANTITYPURCHASED
+    db_column_name: QUANTITYPURCHASED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: ITEMPRICE
+    db_column_name: ITEMPRICE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DOUBLE
+  - name: SALES
+    db_column_name: SALES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DOUBLE
+  - name: RECORDDATE
+    db_column_name: RECORDDATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE
+  joins_with:
+  - name: C_DIM_RETAPP_PRODUCTS
+    destination:
+      name: DIM_RETAPP_PRODUCTS
+      fqn: c7da0443-05b0-44b4-b790-d91eab02ae09
+    "on": "[FACT_RETAPP_SALES::PRODUCTID] = [DIM_RETAPP_PRODUCTS::PRODUCTID]"
+    type: INNER
+  - name: C_DIM_RETAPP_STORES
+    destination:
+      name: DIM_RETAPP_STORES
+      fqn: 1acc9899-12c3-4afb-bdcd-5d0d095c5de5
+    "on": "[FACT_RETAPP_SALES::STOREID] = [DIM_RETAPP_STORES::STOREID]"
+    type: INNER
+  properties:
+    sage_config:
+      is_sage_enabled: true
